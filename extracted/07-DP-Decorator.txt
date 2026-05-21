@@ -1,0 +1,179 @@
+     Université Nord Américaine privée
+
+Institut International Technologie
+
+   Modélisation avancée
+des Systèmes d'Information
+
+07 - Decorator
+
+Mohamed ZAYANI
+
+2025/2026                               1
+
+MASI-07- Decorator - Mohamed ZAYANI
+            Définition du Decorator
+
+· Le patron de conception Decorator est un patron structurel qui permet d'ajouter dynamiquement des
+
+    fonctionnalités à un objet sans modifier son code.
+
+· Il encapsule un objet existant dans une nouvelle classe (le décorateur) qui enrichit son comportement.
+
+· Objectif principal:
+
+ Ajouter des fonctionnalités de manière flexible et évolutive.
+
+· Problématique:
+
+ Comment enrichir un objet avec de nouvelles fonctionnalités sans modifier sa classe ?
+ L'héritage ne permet pas de combiner dynamiquement des comportements.
+ Étendre les fonctionnalités d'un objet sans hériter de sa classe.
+
+· Exemple:
+
+· Dans un logiciel de traitement de texte, un texte peut être:
+
+ Simple
+
+ Gras
+
+ Souligné
+
+ Encadré
+
+ Créer une sous-classe pour chaque combinaison (Gras + Souligné + Encadré) devient ingérable.  2
+
+                                                    MASI-07- Decorator - Mohamed ZAYANI
+Solution proposée par Decorator
+
+· Définir une interface commune ou une classe abstraite pour les composants de base.
+· Créer des décorateurs qui implémentent cette interface et ajoutent des fonctionnalités.
+· Composer les décorateurs pour enrichir progressivement l'objet.
+
+· Principe:
+
+· Étendre les fonctionnalités d'un objet sans hériter de sa classe.
+
+· Avantages :
+
+      · Flexibilité : Ajouter ou retirer des fonctionnalités dynamiquement.
+      · Respect des principes SOLID (Open/Closed).
+      · Combinaison libre des fonctionnalités.
+
+             MASI-07- Decorator - Mohamed ZAYANI                             3
+                      Modélisation UML                                  << Classe abstraite >>
+
+                                                                    1      Component
+
+                                                                       + getDescription ( )
+
+ << classe abstraite >>        << classe >>                                   << classe >>
+
+       Decorator            ComponentA                                    ComponentB
+
++ getDescription ( )     + getDescription ( )                          + getDescription ( )
+
+     << classe >>            << classe >>                                              4
+
+  DecoratorA            DecoratorB
+
++ getDescription ( )   + getDescription ( )
+
+                      MASI-07- Decorator - Mohamed ZAYANI
+Implémentation JAVA
+
+//structure de base                        //Décorateur abstrait
+
+public abstract class Boisson              public abstract class BoissonDecorator extends Boisson
+
+{                                          {
+        abstract String getDescription();         protected Boisson boisson;
+        abstract double getPrix();
+                                                  public BoissonDecorator(Boisson boisson)
+}                                                 {
+
+//Composant concret : Café simple                         this.boisson = boisson;
+                                                  }
+public class Cafe extends Boisson                 @Override
+                                                  public String getDescription()
+{                                                 {
+   @Override
+   public String getDescription()                         return boisson.getDescription();
+   {                                              }
+      return "Café";                              @Override
+   }                                              public double getPrix()
+                                                  {
+   @Override
+   public double getPrix()                                return boisson.getPrix();
+   {                                              }
+                                           }
+    return 1.5;
+   }
+}
+
+MASI-07- Decorator - Mohamed ZAYANI                                                                5
+                           Implémentation JAVA
+
+//Décorateur1 : Ajouter du lait                   public class Client {
+
+public class Lait extends BoissonDecorator {      public static void main(String[] args) {
+                                                  // Boisson de base : Café
+public Lait(Boisson boisson) {                    Boisson boisson = new Cafe();
+       super(boisson);                            System.out.println(boisson.getDescription() + " => "
+                                                  + boisson.getPrix() + "DT");
+}
+@Override
+public String getDescription() {
+
+   return boisson.getDescription() + ", Lait";
+
+}                                                 // Café avec lait
+@Override                                         boisson = new Lait(boisson);
+public double getPrix() {                         System.out.println(boisson.getDescription() + " => "
+                                                  + boisson.getPrix() + "DT");
+   return boisson.getPrix() + 0.5;
+}
+
+}
+
+                                                  // Café avec lait et chocolat
+
+//Décorateur2 : Ajouter du chocolat               boisson = new Chocolat(boisson);
+
+public class Chocolat extends BoissonDecorator {  System.out.println(boisson.getDescription() + " => "
+                                                  + boisson.getPrix() + "DT");
+public Chocolat(Boisson boisson) {
+
+super(boisson);                                   }
+
+}                                                 }
+
+@Override
+
+public String getDescription() {
+
+return boisson.getDescription() + ", Chocolat";   Résultat:
+}
+
+@Override
+
+public double getPrix() {                         Café => 1.5DT
+
+return boisson.getPrix() + 0.7;                   Café, Lait => 2.0DT
+}                                                 Café, Lait, Chocolat => 2.7DT
+}
+
+                                     MASI-07- Decorator - Mohamed ZAYANI            6
+Cas d'utilisation du Patron Decorator
+
+· Interfaces graphiques (GUI) : Ajouter des bordures, des couleurs, des ombres aux
+
+   composants.
+
+· Systèmes de fichiers : Ajouter des couches de compression ou de chiffrement.
+· Jeux vidéo : Ajouter des équipements ou des pouvoirs spéciaux aux personnages.
+· Flux d'I/O en Java : BufferedInputStream, DataInputStream décorent InputStream.
+
+MASI-07- Decorator - Mohamed ZAYANI                                                 7
+

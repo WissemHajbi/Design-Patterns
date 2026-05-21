@@ -1,0 +1,135 @@
+     Université Nord Américaine privée
+
+Institut International Technologie
+
+   Modélisation avancée
+des Systèmes d'Information
+
+06 - Strategy
+
+Mohamed ZAYANI
+
+2025/2026                               1
+
+MASI -06- Strategy - Mohamed ZAYANI
+             Définition de Strategy
+
+· Le patron de conception Strategy est un patron comportemental qui permet de définir une famille
+
+   d'algorithmes, de les encapsuler dans des classes distinctes et de les rendre interchangeables.
+
+· Objectif principal:
+
+ Modifier dynamiquement le comportement d'un objet sans altérer son code.
+
+· Problématique:
+
+ Comment permettre à un objet de choisir dynamiquement parmi plusieurs algorithmes sans
+
+   multiplier les conditions (if-else ou switch) ?
+ Comment respecter le principe Open/Closed (ouvert à l'extension, fermé à la modification) sans
+
+   modifier la classe principale ?.
+
+· Solution:
+
+· Définir une interface commune pour tous les algorithmes.
+
+· Créer des implémentations concrètes de cette interface pour chaque stratégie.
+
+· Permettre à la classe cliente de choisir dynamiquement la stratégie à appliquer.
+
+· L'ajout de nouveaux comportements se fait sans modifier le code existant                       2
+
+                                                     MASI -06- Strategy - Mohamed ZAYANI
+Modélisation UML
+
+   << classe >>                     << interface >>
+
+  Context                         Strategy
+
++ setStrategy ( ... )       + algorithm ( )
++ execute ( )
+                       1
+
+                              << classe >>  << implements >>
+
+                            StrategyA                        << classe >>
+
+                       + algorithm ( )                  StrategyB
+
+                                                   + algorithm ( )
+
+MASI -06- Strategy - Mohamed ZAYANI                                        3
+Implémentation JAVA
+
+public interface StrategieTri                        public class TriSelection implements StrategieTri
+
+{                                                    {
+void trier(int[] tableau);                           @Override
+}                                                    public void trier(int[] tableau)
+
+public class TriInsertion implements StrategieTri     {
+{                                                           int n = tableau.length;
+@Override                                                   for (int i = 0; i < n - 1; i++)
+public void trier(int[] tableau)                            {
+                                                                    int minIndex = i;
+ {                                                                  for (int j = i + 1; j < n; j++)
+       for (int i = 1; i < tableau.length; i++)                     {
+       {                                                                    if (tableau[j] < tableau[minIndex])
+               int key = tableau[i];                                        {
+               int j = i - 1;                                                       minIndex = j;
+               while (j >= 0 && tableau[j] > key)                           }
+               {                                                    }
+                       tableau[j + 1] = tableau[j];                 int temp = tableau[minIndex];
+                       j--;                                         tableau[minIndex] = tableau[i];
+               }                                                    tableau[i] = temp;
+               tableau[j + 1] = key;                        }
+       }
+                                                        }
+ }                                                   }
+}
+
+MASI -06- Strategy - Mohamed ZAYANI                                                                              4
+Implémentation JAVA
+
+public class Contexte {                            import java.util.Arrays;
+
+//Attribut d'association                           public class Client {
+private StrategieTri strategie;
+// Setter pour changer la stratégie dynamiquement  public static void main(String[] args) {
+public void setStrategie(StrategieTri strategie)   // Création du contexte
+{                                                  Contexte contexte = new Contexte();
+this.strategie = strategie;
+}                                                  int[] tableau = {5, 2, 9, 1, 5, 6};
+                                                   // Utilisation du tri par sélection
+// Exécution de la stratégie de tri                contexte.setStrategie(new TriSelection());
+public void trierTableau(int [] tableau) {         contexte.trierTableau(tableau);
+if (strategie == null) {                           System.out.println("Résultat : " +
+throw new IllegalStateException(                   Arrays.toString(tableau));
+"Aucune stratégie de tri n'a été définie.");
+}                                                  // Réinitialisation du tableau
+strategie.trier(tableau);                          tableau = new int[]{5, 2, 9, 1, 5, 6};
+}
+}                                                  // Utilisation du tri par insertion
+                                                   contexte.setStrategie(new TriInsertion());
+  Résultat:                                        contexte.trierTableau(tableau);
+                                                   System.out.println("Résultat : " +
+Résultat : [1, 2, 5, 5, 6, 9]                      Arrays.toString(tableau));
+Résultat : [1, 2, 5, 5, 6, 9]                      }
+                                                   }
+
+MASI -06- Strategy - Mohamed ZAYANI                                                            5
+Cas d'utilisation du Patron Strategy
+
+· Algorithmes de tri ou de compression interchangeables.
+· Moteurs de paiement qui changent de stratégie selon le moyen de
+
+  paiement (carte, PayPal, crypto).
+· Jeux vidéo : Stratégies d'attaque différentes selon les niveaux.
+· Systèmes de navigation : Choix de l'itinéraire (rapide, économique,
+
+  panoramique).
+
+MASI -06- Strategy - Mohamed ZAYANI                                    6
+

@@ -1,0 +1,44 @@
+                                                                 Université Nord Américaine privée
+
+                                                                 Institut International Technologie
+
+              MASI ­ Mini projet
+
+                                 s2-2025-2026
+
+Enoncé :
+
+   Réaliser une application JavaFX permettant de sélectionner et dessiner des formes géométriques
+   (rectangle, cercle, ligne, etc.) sur une zone de dessin.
+   L'architecture de l'application doit s'appuyer sur des design patterns pour une meilleure modularité,
+   extensibilité et maintenance du code.
+   Les principales fonctionnalités sont les suivantes :
+
+         · Sélectionner une forme géométrique à partir d'une palette
+         · Dessiner une forme géométrique dans la zone de dessin (selon le type sélectionné)
+         · Annuler une action de dessin
+         · Effacer une forme géométrique
+         · Enregistrer le dessin dans une base de données
+         · Ouvrir un dessin déjà existant
+         · Journaliser les actions de l'utilisateur (sélection, ajout d'une forme, suppression d'une forme,
+
+              annulation,..)
+         · La journalisation peut être réalisée selon trois stratégies :
+
+                     o Dans la console
+                     o Dans un fichier texte
+                     o Dans une base de données
+
+         · Comme étude de cas, l'utilisateur peut dessiner un graphe et demander de calculer le plus
+              court chemin entre deux noeuds donnés selon un algorithme choisi pour calculer le plus court
+              chemin entre deux noeuds (Cette partie est optionnelle).
+
+Travail demandé :
+
+        Réaliser l'application décrite ci-dessus
+        Déposer le code source du projet avant ainsi d'une vidéo démonstrative du travail réalisé.
+        Déposer un rapport qui explique les design patterns (avec modélisation UML) pour chaque
+         fonctionnalité.
+
+IIT - A.U. 2025 /2026 ­ S2 ­ MASI- MINI PROJET ­ MOHAMED ZAYANI                                      1/1
+

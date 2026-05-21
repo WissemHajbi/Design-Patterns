@@ -1,0 +1,94 @@
+     Université Nord Américaine privée
+
+Institut International Technologie
+
+   Modélisation avancée
+des Systèmes d'Information
+
+04 - Adapter
+
+Mohamed ZAYANI
+
+2025/2026                               1
+
+MASI -04- Adapter - Mohamed ZAYANI
+                  Définition d'Adapter
+
+· Le patron de conception Adapter (ou Adaptateur) est un patron structurel qui permet de
+
+connecter des interfaces incompatibles.
+
+· Objectif principal:
+
+ Il agit comme un pont entre deux classes pour qu'elles puissent travailler ensemble malgré leurs
+     différences.
+
+· Problématique:
+
+ Travailler avec deux systèmes ou composants ayant des interfaces différentes.
+ Par exemple, utiliser une nouvelle classe dans un système existant sans modifier le code du
+
+   système ni celui de la classe.
+
+· Solution:
+
+· Le patron Adapter traduit ou adapte l'interface d'une classe pour qu'elle corresponde à ce que le client
+
+attend. Il agit comme une couche intermédiaire.
+
+                       MASI -04- Adapter - Mohamed ZAYANI                                                   2
+<< classe >>           Modélisation UML
+
+  Client                                                       << interface >>
+
+                                                       Target
+
+                                                   + request ( )
+
+     Le client voit                            << implements >>                           << classe >>
+seulement l'interface
+                                 << classe >>                                           Adaptee
+         Target.
+                               Adapter                                          + specificRequest ( )
+
+                       + request ( )
+
+                       MASI -04- Adapter - Mohamed ZAYANI        La méthode « request ()» de l'Adapter
+                                                                        est déléguée à la méthode
+
+                                                                   « specificRequest () » de l'Adaptee
+
+                                                                                              3
+                      Implémentation JAVA
+
+//L'interface cible que le client attend   //La classe existante avec une méthode incompatible
+
+public interface Target                    public class Adaptee {
+
+{                                          public void specificRequest()
+     void request();                       {
+                                           System.out.println("Appel à specificRequest depuis Adaptee.");
+}                                          }
+                                           }
+
+//L'Adapter qui fait le lien entre Target et Adaptee  //Classe principale ou client
+
+Adapter public class  implements Target               public class Client {
+
+{                                                     public static void main(String[] args) {
+ private Adaptee adaptee;                             // Instance de la classe existante
+ public Adapter(Adaptee adaptee)                      Adaptee adaptee = new Adaptee();
+ {                                                    // Utilisation de l'Adapter pour rendre Adaptee
+   this.adaptee = adaptee;                            // compatible avec Target
+ }                                                    Target target = new Adapter(adaptee);
+ @Override                                            // Appel de la méthode via l'interface cible
+ public void request()                                target.request();
+ {                                                    }
+ // Adapte l'appel à la méthode existante             }
+     adaptee.specificRequest();
+ }                                                     Résultat:
+
+}                                                          Appel à specificRequest depuis Adaptee.
+
+                      MASI -04- Adapter - Mohamed ZAYANI                                                   4
+

@@ -1,0 +1,155 @@
+     Université Nord Américaine privée
+
+Institut International Technologie
+
+   Modélisation avancée
+des Systèmes d'Information
+
+05 - Observer
+
+Mohamed ZAYANI
+
+2025/2026                               1
+
+MASI -05- Observer - Mohamed ZAYANI
+             Définition d'Observer
+
+· Le patron de conception Observer est un patron comportemental qui définit une relation
+   "un-à-plusieurs" entre des objets: Lorsqu'un objet (appelé Sujet ou Observable) change d'état,
+   tous ses Observateurs (ou Observers) en sont automatiquement informés et mis à jour.
+
+· Objectif principal:
+
+      découpler l'objet principal (le sujet) des objets qui dépendent de lui (les observateurs), favorisant ainsi une
+          meilleure extensibilité et maintenabilité.
+
+· Problématique:
+
+       Comment notifier automatiquement les objets dépendants sans les coupler fortement au sujet ?
+       Comment garantir la cohérence des données entre les objets interdépendants ?.
+
+· Solution:
+
+      · Le Sujet conserve une liste d'observateurs et fournit des méthodes pour ajouter, supprimer et notifier ces
+          observateurs.
+
+      · Les Observateurs s'abonnent au sujet et sont automatiquement informés des changements d'état.
+
+   2 · L'objet sujet informe automatiquement ses observateurs sans avoir besoin de connaître leur implémentation
+                                                             MASI -05- Observer - Mohamed ZAYANI
+Modélisation UML
+
+       << interface >>                        << interface >>
+
+     Observable                            Observer
+
++ addObs ( )                     * + update ( )
++ removeObs ( )
++ notifyAllObs ( )
+
+               << implements >>                       << implements >>
+
+  << classe >>                            << classe >>
+
+ConcretSubject                       ConcretObserver
+
++ addObs ( )                         + update ( )
++ removeObs ( )
++ notifyAllObs ( )
+
++ getState ( )
++ setState ( )
+
+MASI -05- Observer - Mohamed ZAYANI                                     3
+Implémentation JAVA
+
+public interface Observer                 import java.util.ArrayList;
+                                          import java.util.List;
+{
+
+void update (String message);             public class Data implements Observable {
+}
+
+                                          private List<Observer> observateurs = new ArrayList<>();
+
+public class ConcretObserver              private String message;
+                                          public void addObserver(Observer o) {
+implements Observer {
+                                                 observateurs.add(o);
+private String libelle;                   }
+
+public ConcretObserver(String libelle) {  public void removeObserver(Observer o) {
+super();                                         observateurs.remove(o);
+this.libelle = libelle;
+}                                         }
+@Override                                 public void notifyAllObservers() {
+public void update(String message) {
+System.out.println(libelle + " a reçu le         for (Observer o : observateurs)
+nouveau message : " + message);                  {
+}
+}                                                      o.update(message);
+                                                 }
+                                          }
+                                          public String getMessage() {
+                                                 return message;
+
+public interface Observable {             }
+                                          public void setMessage(String message) {
+void addObserver(Observer o);
+void removeObserver (Observer o);                this.message = message;
+void notifyAllObservers();                       notifyAllObservers();
+}                                         }
+                                          }
+
+                                   MASI -05- Observer - Mohamed ZAYANI                              4
+                         Implémentation JAVA
+
+public class Client {
+
+public static void main(String[] args) {
+// créer un sujet concret (de type Data)
+Data data = new Data();
+
+// créer trois observateurs concrets
+
+Observer obs1 = new ConcretObserver("Observateur 1");
+
+Observer obs2 = new ConcretObserver("Observateur 2");
+
+Observer obs3 = new ConcretObserver("Observateur 3");
+
+//enregistrer les observateurs                                       Résultat:
+
+data.addObserver(obs1);                            Observateur 1 a reçu le nouveau message : message 1
+data.addObserver(obs2);                            Observateur 2 a reçu le nouveau message : message 1
+data.addObserver(obs3);                            Observateur 3 a reçu le nouveau message : message 1
+
+//changer la valeur du message                     -------------
+data.setMessage("message 1");                      Observateur 1 a reçu le nouveau message : message 2
+                                                   Observateur 3 a reçu le nouveau message : message 2
+
+// supprimer le deuxième observateur
+data.removeObserver(obs2);
+
+System.out.println("-------------");
+// changer une deuxième fois la valeur du message
+data.setMessage("message 2");
+}
+}
+
+                                MASI -05- Observer - Mohamed ZAYANI                                     5
+Cas d'utilisation du Patron Observer
+
+· Interfaces Graphiques (GUI) : Actualisation de composants graphiques lors
+
+   d'un événement (boutons, champs de texte).
+
+· Flux de données en temps réel : Notifications des abonnés dans les réseaux
+
+   sociaux, systèmes de messagerie.
+
+· Systèmes de surveillance : Capteurs de température, systèmes de sécurité.
+· Gestion des événements : Listeners dans les applications web et mobiles.
+
+MASI -05- Observer - Mohamed ZAYANI                                           6
+

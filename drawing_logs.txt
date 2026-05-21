@@ -1,0 +1,2 @@
+Shape drawn: RECTANGLE
+Save drawing
