@@ -1,2 +1,31 @@
 Shape drawn: RECTANGLE
 Save drawing
+Shape selected: NODE
+Shape drawn: NODE
+Shape drawn: NODE
+Shape selected: EDGE
+Shape drawn: EDGE
+Select the target node
+Shape selected: EDGE
+Select the target node
+Shape selected: EDGE
+Shape drawn: EDGE
+Select the target node
+Shape selected: NODE
+Shape selected: NODE
+Start node selected: N1
+Shape selected: NODE
+End node selected: N2
+Shortest path: N1 -> N2
+Undo
+Undo
+Undo
+Undo
+Undo
+Undo
+Undo
+Undo
+Undo
+Undo
+Shape drawn: NODE
+Save drawing
