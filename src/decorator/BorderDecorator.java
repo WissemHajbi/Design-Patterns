@@ -4,7 +4,7 @@ import javafx.scene.Node;
 import javafx.scene.shape.Shape;
 import model.DrawableShape;
 
-// Adds a simple border style.
+
 public class BorderDecorator extends ShapeDecorator {
 
     public BorderDecorator(DrawableShape shape) {

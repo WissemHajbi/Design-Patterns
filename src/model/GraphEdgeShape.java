@@ -4,7 +4,7 @@ import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
-// Simple graph edge between two nodes.
+
 public class GraphEdgeShape implements DrawableShape {
 
     private GraphNodeShape sourceNode;

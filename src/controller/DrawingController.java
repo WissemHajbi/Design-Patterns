@@ -28,11 +28,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import factory.CircleFactory;
-import factory.EdgeFactory;
-import factory.LineFactory;
-import factory.NodeFactory;
-import factory.RectangleFactory;
+import factory.ShapeFactory;
 import model.DrawableShape;
 import model.DrawingInfo;
 import model.DrawingModel;
@@ -49,8 +45,8 @@ import strategy.FileLogStrategy;
 import strategy.LogStrategy;
 import strategy.ShortestPathContext;
 
-// Simple controller class for the JavaFX drawing application.
-// The code stays close to the course style: simple fields, simple methods, and basic events.
+
+
 public class DrawingController {
 
     private BorderPane root;
@@ -233,14 +229,7 @@ public class DrawingController {
         drawingPane.setOnMouseReleased(e -> {
             if ("SHAPE".equals(selectedMode)) {
                 if ("RECTANGLE".equals(selectedTool) || "CIRCLE".equals(selectedTool) || "LINE".equals(selectedTool)) {
-                    DrawableShape shape;
-                    if ("RECTANGLE".equals(selectedTool)) {
-                        shape = RectangleFactory.create(startX, startY, e.getX(), e.getY());
-                    } else if ("CIRCLE".equals(selectedTool)) {
-                        shape = CircleFactory.create(startX, startY, e.getX(), e.getY());
-                    } else {
-                        shape = LineFactory.create(startX, startY, e.getX(), e.getY());
-                    }
+                    DrawableShape shape = ShapeFactory.createShape(selectedTool, startX, startY, e.getX(), e.getY());
                     shape = new ColorDecorator(shape, Color.WHITE, Color.BLACK);
                     shape = new BorderDecorator(shape);
                     commandManager.executeCommand(new AddShapeCommand(model, shape));
@@ -253,7 +242,7 @@ public class DrawingController {
             if ("GRAPH".equals(selectedMode)) {
                 if ("NODE".equals(selectedTool)) {
                     String label = "N" + (model.getGraphNodes().size() + 1);
-                    DrawableShape node = NodeFactory.create(label, e.getX(), e.getY());
+                    DrawableShape node = ShapeFactory.createNode(label, e.getX(), e.getY());
                     commandManager.executeCommand(new AddShapeCommand(model, node));
                     refreshDrawingPane();
                 }
@@ -345,7 +334,7 @@ public class DrawingController {
             model.setMessage("Select the target node");
         } else {
             if (pendingEdgeNode != node) {
-                DrawableShape edge = EdgeFactory.create(pendingEdgeNode, node);
+                DrawableShape edge = ShapeFactory.createEdge(pendingEdgeNode, node);
                 commandManager.executeCommand(new AddShapeCommand(model, edge));
                 refreshDrawingPane();
             }

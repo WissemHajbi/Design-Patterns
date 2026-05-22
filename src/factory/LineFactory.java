@@ -1,10 +1,17 @@
 package factory;
 
+import model.DrawableShape;
 import model.LineAdapter;
 
-public class LineFactory {
+public class LineFactory implements ShapeCreator {
 
-    public static LineAdapter create(double x1, double y1, double x2, double y2) {
-        return new LineAdapter(x1, y1, x2, y2);
+    @Override
+    public String getType() {
+        return "LINE";
+    }
+
+    @Override
+    public DrawableShape create(ShapeRequest request) {
+        return new LineAdapter(request.getX1(), request.getY1(), request.getX2(), request.getY2());
     }
 }

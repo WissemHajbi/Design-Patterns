@@ -2,7 +2,7 @@ package command;
 
 import java.util.Stack;
 
-// Manages the undo stack.
+
 public class CommandManager {
 
     private Stack<Command> undoStack;

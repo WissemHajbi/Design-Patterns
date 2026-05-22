@@ -3,7 +3,7 @@ package command;
 import model.DrawableShape;
 import model.DrawingModel;
 
-// Command for adding a shape.
+
 public class AddShapeCommand implements Command {
 
     private DrawingModel model;

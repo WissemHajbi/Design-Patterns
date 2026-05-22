@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 import singleton.DatabaseConnection;
 
-// DAO used by the logging database strategy.
+
 public class LogDAO {
 
     public void saveLog(String action, String message) {

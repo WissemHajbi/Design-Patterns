@@ -3,7 +3,7 @@ package command;
 import model.DrawableShape;
 import model.DrawingModel;
 
-// Command for deleting a shape.
+
 public class DeleteShapeCommand implements Command {
 
     private DrawingModel model;

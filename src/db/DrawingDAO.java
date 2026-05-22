@@ -12,7 +12,7 @@ import model.DrawingInfo;
 import model.DrawableShape;
 import singleton.DatabaseConnection;
 
-// DAO for drawings.
+
 public class DrawingDAO {
 
     private ShapeDAO shapeDAO;

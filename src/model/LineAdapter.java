@@ -4,7 +4,7 @@ import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
-// Adapter for JavaFX Line.
+
 public class LineAdapter implements DrawableShape {
 
     private Line line;

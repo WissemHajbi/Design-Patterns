@@ -29,3 +29,13 @@ Undo
 Undo
 Shape drawn: NODE
 Save drawing
+Select the target node
+Mode selected: Shape Mode
+Shape selected: CIRCLE
+Shape drawn: CIRCLE
+Shape drawn: CIRCLE
+Save drawing
+Shape drawn: CIRCLE
+Save drawing
+Save drawing
+Save drawing

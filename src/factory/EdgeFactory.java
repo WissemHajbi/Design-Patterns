@@ -1,11 +1,17 @@
 package factory;
 
+import model.DrawableShape;
 import model.GraphEdgeShape;
-import model.GraphNodeShape;
 
-public class EdgeFactory {
+public class EdgeFactory implements ShapeCreator {
 
-    public static GraphEdgeShape create(GraphNodeShape source, GraphNodeShape target) {
-        return new GraphEdgeShape(source, target);
+    @Override
+    public String getType() {
+        return "EDGE";
+    }
+
+    @Override
+    public DrawableShape create(ShapeRequest request) {
+        return new GraphEdgeShape(request.getSource(), request.getTarget());
     }
 }

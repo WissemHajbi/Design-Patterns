@@ -1,10 +1,17 @@
 package factory;
 
 import model.CircleAdapter;
+import model.DrawableShape;
 
-public class CircleFactory {
+public class CircleFactory implements ShapeCreator {
 
-    public static CircleAdapter create(double x1, double y1, double x2, double y2) {
-        return new CircleAdapter(x1, y1, x2, y2);
+    @Override
+    public String getType() {
+        return "CIRCLE";
+    }
+
+    @Override
+    public DrawableShape create(ShapeRequest request) {
+        return new CircleAdapter(request.getX1(), request.getY1(), request.getX2(), request.getY2());
     }
 }

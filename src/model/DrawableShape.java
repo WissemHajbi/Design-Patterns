@@ -2,8 +2,8 @@ package model;
 
 import javafx.scene.Node;
 
-// Common interface used by the drawing application.
-// The controller manipulates shapes only through this interface.
+
+
 public interface DrawableShape {
 
     Node getNode();

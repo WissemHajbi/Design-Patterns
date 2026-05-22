@@ -11,7 +11,7 @@ import java.util.Queue;
 import model.GraphEdgeShape;
 import model.GraphNodeShape;
 
-// Shortest path with BFS.
+
 public class BFSStrategy implements ShortestPathStrategy {
 
     @Override

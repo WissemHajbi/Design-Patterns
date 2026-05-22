@@ -4,7 +4,7 @@ import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-// Adapter for JavaFX Circle.
+
 public class CircleAdapter implements DrawableShape {
 
     private Circle circle;

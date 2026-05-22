@@ -10,7 +10,7 @@ import java.util.PriorityQueue;
 import model.GraphEdgeShape;
 import model.GraphNodeShape;
 
-// Shortest path with a very simple Dijkstra implementation.
+
 public class DijkstraStrategy implements ShortestPathStrategy {
 
     @Override

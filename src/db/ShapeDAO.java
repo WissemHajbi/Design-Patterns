@@ -8,17 +8,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import factory.CircleFactory;
-import factory.EdgeFactory;
-import factory.LineFactory;
-import factory.NodeFactory;
-import factory.RectangleFactory;
+import factory.ShapeFactory;
 import model.DrawableShape;
 import model.GraphEdgeShape;
 import model.GraphNodeShape;
 import singleton.DatabaseConnection;
 
-// DAO for shapes.
+
 public class ShapeDAO {
 
     public void saveShapes(int drawingId, List<DrawableShape> shapes) {
@@ -67,17 +63,11 @@ public class ShapeDAO {
                 String extra = rsNodes.getString("extra_data");
 
                 if ("NODE".equals(type)) {
-                    GraphNodeShape node = NodeFactory.create(extra, x1, y1);
+                    GraphNodeShape node = ShapeFactory.createNode(extra, x1, y1);
                     shapes.add(node);
                     nodeMap.put(node.getLabel(), node);
-                } else {
-                    if ("RECTANGLE".equals(type)) {
-                        shapes.add(RectangleFactory.create(x1, y1, x2, y2));
-                    } else if ("CIRCLE".equals(type)) {
-                        shapes.add(CircleFactory.create(x1, y1, x2, y2));
-                    } else if ("LINE".equals(type)) {
-                        shapes.add(LineFactory.create(x1, y1, x2, y2));
-                    }
+                } else if ("RECTANGLE".equals(type) || "CIRCLE".equals(type) || "LINE".equals(type)) {
+                    shapes.add(ShapeFactory.createShape(type, x1, y1, x2, y2));
                 }
             }
 
@@ -98,7 +88,7 @@ public class ShapeDAO {
                     GraphNodeShape source = nodeMap.get(sourceLabel);
                     GraphNodeShape target = nodeMap.get(targetLabel);
                     if (source != null && target != null) {
-                        shapes.add(EdgeFactory.create(source, target));
+                        shapes.add(ShapeFactory.createEdge(source, target));
                     }
                 }
             }

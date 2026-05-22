@@ -1,6 +1,6 @@
 package strategy;
 
-// Logging in the console.
+
 public class ConsoleLogStrategy implements LogStrategy {
 
     @Override

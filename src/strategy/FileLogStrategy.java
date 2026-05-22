@@ -4,7 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-// Logging in a text file.
+
 public class FileLogStrategy implements LogStrategy {
 
     private String fileName = "drawing_logs.txt";

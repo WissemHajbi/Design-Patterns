@@ -5,7 +5,7 @@ import java.util.List;
 import model.GraphEdgeShape;
 import model.GraphNodeShape;
 
-// Context for shortest path strategies.
+
 public class ShortestPathContext {
 
     private ShortestPathStrategy strategy;

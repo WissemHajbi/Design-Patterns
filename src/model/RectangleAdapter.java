@@ -4,7 +4,7 @@ import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-// Adapter for JavaFX Rectangle.
+
 public class RectangleAdapter implements DrawableShape {
 
     private Rectangle rectangle;

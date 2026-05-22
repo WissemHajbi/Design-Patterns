@@ -6,8 +6,8 @@ import java.util.List;
 import observer.Observable;
 import observer.Observer;
 
-// Observable model of the drawing.
-// It keeps the shapes and notifies observers when something changes.
+
+
 public class DrawingModel implements Observable {
 
     private List<Observer> observers;

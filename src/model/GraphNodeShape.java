@@ -7,7 +7,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-// Simple graph node: a circle with a label.
+
 public class GraphNodeShape implements DrawableShape {
 
     private String label;

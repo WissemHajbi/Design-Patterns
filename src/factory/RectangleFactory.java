@@ -1,10 +1,17 @@
 package factory;
 
+import model.DrawableShape;
 import model.RectangleAdapter;
 
-public class RectangleFactory {
+public class RectangleFactory implements ShapeCreator {
 
-    public static RectangleAdapter create(double x1, double y1, double x2, double y2) {
-        return new RectangleAdapter(x1, y1, x2, y2);
+    @Override
+    public String getType() {
+        return "RECTANGLE";
+    }
+
+    @Override
+    public DrawableShape create(ShapeRequest request) {
+        return new RectangleAdapter(request.getX1(), request.getY1(), request.getX2(), request.getY2());
     }
 }

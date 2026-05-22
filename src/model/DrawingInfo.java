@@ -1,6 +1,6 @@
 package model;
 
-// Simple data class used to show drawings in the ComboBox.
+
 public class DrawingInfo {
 
     private int id;

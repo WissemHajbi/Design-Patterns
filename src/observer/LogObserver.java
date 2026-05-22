@@ -2,7 +2,7 @@ package observer;
 
 import strategy.LogStrategy;
 
-// Observer used to log actions automatically.
+
 public class LogObserver implements Observer {
 
     private LogStrategy logStrategy;

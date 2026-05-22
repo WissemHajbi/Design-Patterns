@@ -2,7 +2,7 @@ package strategy;
 
 import db.LogDAO;
 
-// Logging in SQLite database.
+
 public class DatabaseLogStrategy implements LogStrategy {
 
     private LogDAO logDAO;

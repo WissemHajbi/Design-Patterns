@@ -4,7 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.scene.control.ListView;
 import model.DrawingModel;
 
-// Observer used to refresh the list of shapes.
+
 public class ShapeListObserver implements Observer {
 
     private ListView<String> listView;

@@ -3,7 +3,7 @@ package decorator;
 import javafx.scene.Node;
 import model.DrawableShape;
 
-// Base decorator.
+
 public abstract class ShapeDecorator implements DrawableShape {
 
     protected DrawableShape shape;
