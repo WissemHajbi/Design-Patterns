@@ -39,3 +39,6 @@ Shape drawn: CIRCLE
 Save drawing
 Save drawing
 Save drawing
+Shape selected: RECTANGLE
+Shape drawn: RECTANGLE
+Shape drawn: RECTANGLE
